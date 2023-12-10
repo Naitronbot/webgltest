@@ -25,7 +25,7 @@ void main() {
     if (u_frame == 0) {
         fragColor = vec4(uv.x, 0.0, uv.y, 1);
     } else {
-        fragColor = texture(u_texture, uv) + 0.002 * vec4(1.0, 1.0, 1.0, 0.0);
+        fragColor = texture(u_texture, uv) + 0.001 * vec4(1.0, 1.0, 1.0, 0.0);
     }
 }
 `;
@@ -74,7 +74,7 @@ void main() {
     const textures2 = [GL2.createTexture(), GL2.createTexture()];
     for (let i = 0; i < 2; i++) {
       GL2.bindTexture(GL2.TEXTURE_2D, textures2[i]);
-      GL2.texImage2D(GL2.TEXTURE_2D, 0, GL2.RGBA, GL2.canvas.width, GL2.canvas.height, 0, GL2.RGBA, GL2.UNSIGNED_BYTE, null);
+      GL2.texImage2D(GL2.TEXTURE_2D, 0, GL2.RGBA32F, GL2.canvas.width, GL2.canvas.height, 0, GL2.RGBA, GL2.FLOAT, null);
       GL2.texParameteri(GL2.TEXTURE_2D, GL2.TEXTURE_MIN_FILTER, GL2.LINEAR);
       GL2.texParameteri(GL2.TEXTURE_2D, GL2.TEXTURE_WRAP_S, GL2.CLAMP_TO_EDGE);
       GL2.texParameteri(GL2.TEXTURE_2D, GL2.TEXTURE_WRAP_T, GL2.CLAMP_TO_EDGE);
@@ -86,6 +86,8 @@ void main() {
   // src/script.ts
   var CANVAS = document.querySelector("canvas");
   var GL = CANVAS.getContext("webgl2");
+  GL.getExtension("OES_texture_float_linear");
+  GL.getExtension("EXT_color_buffer_float");
   GL.clearColor(0, 0, 0, 1);
   GL.clear(GL.COLOR_BUFFER_BIT);
   var textureProgram = GL.createProgram();

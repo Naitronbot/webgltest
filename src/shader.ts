@@ -23,7 +23,7 @@ void main() {
     if (u_frame == 0) {
         fragColor = vec4(uv.x, 0.0, uv.y, 1);
     } else {
-        fragColor = texture(u_texture, uv) + 0.002 * vec4(1.0, 1.0, 1.0, 0.0);
+        fragColor = texture(u_texture, uv) + 0.001 * vec4(1.0, 1.0, 1.0, 0.0);
     }
 }
 `;
