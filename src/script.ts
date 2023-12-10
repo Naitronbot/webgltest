@@ -4,6 +4,9 @@ import { createTextures } from "./textures.ts";
 const CANVAS = document.querySelector("canvas")!;
 const GL = CANVAS.getContext("webgl2")!;
 
+GL.getExtension( 'OES_texture_float_linear');
+GL.getExtension( 'EXT_color_buffer_float');
+
 GL.clearColor(0.0, 0.0, 0.0, 1.0);
 GL.clear(GL.COLOR_BUFFER_BIT);
 
